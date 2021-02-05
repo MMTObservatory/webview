@@ -39,8 +39,6 @@ app.once('ready', () => {
 
   const url = argv.url
   window.loadURL(url)
-  console.log(url)
-  console.log(process.argv)
 
   // Show window when page is ready
   window.once('ready-to-show', () => {
