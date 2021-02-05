@@ -1,12 +1,23 @@
 {
-    "name": "webview",
-    "version": "0.1.0",
-    "author": "T. E. Pickering",
-    "description": "Command-line URL viewer",
-    "repository": "MMTObservatory/webview",
-    "main": "app.js",
-    "license": "MIT",
-    "scripts": {
-        "start": "electron ."
-    }
+  "name": "webview",
+  "version": "0.1.0",
+  "author": "T. E. Pickering",
+  "description": "Command-line URL viewer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMTObservatory/webview.git"
+  },
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "bugs": {
+    "url": "https://github.com/MMTObservatory/webview/issues"
+  },
+  "homepage": "https://github.com/MMTObservatory/webview#readme",
+  "keywords": [],
+  "devDependencies": {
+    "electron": "^11.2.2"
+  }
 }
