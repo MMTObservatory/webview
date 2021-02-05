@@ -26,8 +26,9 @@ jobs:
       run: |
         npm --no-git-tag-version version ${{ steps.semver_parser.outputs.fullversion }}
         npm init -y
+        npm i -g npx
         npm i --save-dev electron
-        npx \@electron-forge/cli import
+        npx @electron-forge/cli import
         npm run make
     - name: Create Release
       id: create_release
