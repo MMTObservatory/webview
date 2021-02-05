@@ -24,7 +24,8 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npx -q @electron-forge/cli import
+        npm add --dev @electron-forge/cli
+        npx -q electron-forge import
         npm run make
     - name: Create Release
       id: create_release
