@@ -12,13 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Parse semver string
+       id: semver_parser
+       uses: booxmedialtd/ws-action-parse-semver@v1
+       with:
+         input_string: ${{ github.ref }}
     - name: Set up Node
       uses: actions/setup-node@v2
       with:
         node-version: '10'
     - name: Build with node
       run: |
-        npm version from-git
+        npm version from-git --allow-same-version
         npm run make
     - name: Create Release
       id: create_release
@@ -37,6 +42,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: ./out/make/deb/x64/webview_${{ github.ref }}_amd64.deb
-        asset_name: webview_${{ github.ref }}_amd64.deb
+        asset_path: ./out/make/deb/x64/webview_${{ steps.semver_parser.outputs.fullversion }}_amd64.deb
+        asset_name: webview_${{ steps.semver_parser.outputs.fullversion }}_amd64.deb
         asset_content_type: application/vnd.debian.binary-package
