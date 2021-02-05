@@ -9,7 +9,7 @@ name: Build and release x86_64 .deb file
 jobs:
   build:
     name: Build debian package
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Parse semver string
@@ -24,7 +24,7 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npx @electron-forge/cli import
+        npx -q @electron-forge/cli import
         npm run make
     - name: Create Release
       id: create_release
