@@ -1,0 +1,12 @@
+{
+    "name": "webview",
+    "version": "0.1.0",
+    "author": "T. E. Pickering",
+    "description": "Command-line URL viewer",
+    "repository": "MMTObservatory/webview",
+    "main": "app.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "electron ."
+    }
+}
