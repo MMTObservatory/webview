@@ -1,9 +1,25 @@
 const {app, BrowserWindow} = require('electron') // http://electron.atom.io/docs/api
 
 // Set up command-line switches and their defaults
-app.commandLine.appendSwitch("width", 1024)
-app.commandLine.appendSwitch("height", 768)
-app.commandLine.appendSwitch("url", "http://mmto.org")
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv))
+  .option('width', {
+    alias: 'w',
+    default: 1024,
+    description: 'Browser window width'
+  })
+  .option('height', {
+    alias: 'h',
+    default: 768,
+    description: 'Browser window height'
+  })
+  .option('url', {
+    alias: 'u',
+    default: "http://mmto.org",
+    description: "URL to view"
+  })
+  .argv
 
 let window = null
 
@@ -11,8 +27,8 @@ let window = null
 app.once('ready', () => {
   // Create a new window
   window = new BrowserWindow({
-    width: app.commandLine.getSwitchValue("width"),
-    height: app.commandLine.getSwitchValue("height"),
+    width: Number(argv.width),
+    height: Number(argv.height),
     // Don't show the window until it ready, this prevents any white flickering
     show: false,
     webPreferences: {
@@ -21,8 +37,10 @@ app.once('ready', () => {
     }
   })
 
-  const url = app.commandLine.getSwitchValue("url")
+  const url = argv.url
   window.loadURL(url)
+  console.log(url)
+  console.log(process.argv)
 
   // Show window when page is ready
   window.once('ready-to-show', () => {

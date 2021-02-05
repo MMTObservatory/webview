@@ -19,5 +19,8 @@
   "keywords": [],
   "devDependencies": {
     "electron": "^11.2.2"
+  },
+  "dependencies": {
+    "yargs": "^16.2.0"
   }
 }
