@@ -23,7 +23,7 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npm version from-git --allow-same-version
+        npm version from-git --allow-same-version --tags
         npm run make
     - name: Create Release
       id: create_release
