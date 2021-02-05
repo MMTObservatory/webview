@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "semver": "^7.3.4",
     "yargs": "^16.2.0"
   },
   "config": {
