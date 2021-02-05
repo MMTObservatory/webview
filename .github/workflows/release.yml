@@ -24,7 +24,7 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npm version ${{ steps.semver_parser.outputs.fullversion }}
+        npm --no-git-tag-version version ${{ steps.semver_parser.outputs.fullversion }}
         npm run make
     - name: Create Release
       id: create_release
