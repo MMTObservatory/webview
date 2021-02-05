@@ -24,7 +24,7 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npm version from-git --allow-same-version --tags
+        npm version ${{ steps.semver_parser.outputs.fullversion }}
         npm run make
     - name: Create Release
       id: create_release
