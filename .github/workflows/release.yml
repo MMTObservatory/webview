@@ -24,7 +24,6 @@ jobs:
         node-version: '10'
     - name: Build with node
       run: |
-        npm --no-git-tag-version version ${{ steps.semver_parser.outputs.fullversion }}
         npx @electron-forge/cli import
         npm run make
     - name: Create Release
