@@ -37,8 +37,8 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Debian Package
+      id: upload-deb-package
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,3 +47,13 @@ jobs:
         asset_path: ./out/make/deb/x64/webview_${{ steps.semver_parser.outputs.fullversion }}_amd64.deb
         asset_name: webview_${{ steps.semver_parser.outputs.fullversion }}_amd64.deb
         asset_content_type: application/vnd.debian.binary-package
+    - name: Upload RPM Package
+      id: upload-rpm-package
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+        asset_path: ./out/make/rpm/x64/webview-${{ steps.semver_parser.outputs.fullversion }}-1.x86_64.rpm
+        asset_name: webview-${{ steps.semver_parser.outputs.fullversion }}-1.x86_64.rpm
+        asset_content_type: application/octet-stream
