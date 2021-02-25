@@ -1,6 +1,6 @@
 {
   "name": "webview",
-  "version": "0.1.14",
+  "version": "0.2.0",
   "author": "T. E. Pickering",
   "description": "Command-line URL viewer",
   "repository": {
